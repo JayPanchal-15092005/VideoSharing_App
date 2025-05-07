@@ -1,5 +1,5 @@
 import { Image, Text, View, ScrollView } from "react-native";
-import { Statusbar } from "expo-status-bar";
+import { StatusBar } from "expo-status-bar";
 import "../global.css";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "../constants";
@@ -12,6 +12,14 @@ const Welcome = () => {
   const { loading, isLogged} = useGlobalContext();
 
   if (!loading && isLogged) return <Redirect href="/home" />;
+
+  if (!loading && !isLogged) {
+    return (
+      <SafeAreaView>
+        <Text>Something went wrong or context not ready</Text>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -63,7 +71,7 @@ const Welcome = () => {
         </View>
       </ScrollView>
 
-      <Statusbar backgroundColor="#161622" style="light" />
+      <StatusBar backgroundColor="#161622" style="light" />
     </SafeAreaView>
   );
 }
