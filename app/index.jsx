@@ -11,8 +11,21 @@ const Welcome = () => {
 
   const { loading, isLogged} = useGlobalContext();
 
-  if (!loading && isLogged) return <Redirect href="/home" />;
+  // if (!loading && isLogged) return <Redirect href="/home" />;
 
+  if (loading) {
+    return (
+      <SafeAreaView className="bg-primary h-full justify-center items-center">
+        <Text className="text-white">Loading...</Text>
+      </SafeAreaView>
+    );
+  }
+  
+  if (isLogged) {
+    return <Redirect href="/home" />;
+  }
+
+  //
   if (!loading && !isLogged) {
     return (
       <SafeAreaView>
@@ -20,6 +33,7 @@ const Welcome = () => {
       </SafeAreaView>
     );
   }
+  ////
 
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -71,7 +85,7 @@ const Welcome = () => {
         </View>
       </ScrollView>
 
-      <StatusBar backgroundColor="#161622" style="light" />
+      <StatusBar backgroundColor="#161622" style="dark" />
     </SafeAreaView>
   );
 }

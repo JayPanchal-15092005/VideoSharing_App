@@ -24,6 +24,7 @@ const GlobalProvider = ({ children }) => {
         })
         .catch((error) => {
             console.log(error);
+            console.log("Error fetching user:", error.message);
         })
         .finally(() => {
             setLoading(false);
